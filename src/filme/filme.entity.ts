@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Genero } from '../genero/genero.entity';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
 @Entity()
-export class filmes {
+export class Filme {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -25,5 +26,12 @@ export class filmes {
 
   @Column('int')
   anolancamento: number;
+
+  @Column('text')
+  poster: string;
+
+  @ManyToMany(() => Genero, (genero) => genero.filmes)
+  @JoinTable()
+  generos: Genero[]
 
 }
